@@ -31,6 +31,7 @@
 #define FCGIO_H
 
 #include <iostream>
+#include <stdio.h>
 
 #include "fcgiapp.h"
 
