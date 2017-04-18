@@ -4,14 +4,25 @@
 *.lo
 *.a
 *.log
+*.la
+*.libs
 
 cscope*
 
 Makefile
 .deps
 
-config.status
-fcgi_config.h
-libtool
-stamp-h
-stamp-h1
+2.4.1/src/cgi-fcgi/cgi-fcgi
+2.4.1/src/config.status
+2.4.1/src/examples/authorizer
+2.4.1/src/examples/echo
+2.4.1/src/examples/echo-cpp
+2.4.1/src/examples/echo-x
+2.4.1/src/examples/log-dump
+2.4.1/src/examples/size
+2.4.1/src/examples/threaded
+2.4.1/src/fcgi_config.h
+2.4.1/src/libtool
+2.4.1/src/stamp-h
+2.4.1/src/stamp-h1
+

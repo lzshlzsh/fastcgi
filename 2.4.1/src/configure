@@ -11,6 +11,13 @@
 # DJGPP uses `;' like DOS.
 HAVE_SYS_SOCKET_H=1
 
+if [ "x$TENCENT_LIBCO_PATH" != "x" ]; then
+    export CC=g++
+    export CXXFLAGS="-I$TENCENT_LIBCO_PATH -DHAVE_TENCENT_LIBCO"
+    export CFLAGS=$CXXFLAGS
+    export LDFLAGS="-L$TENCENT_LIBCO_PATH/lib -lcolib -pthread -ldl"
+fi
+
 if test "X${PATH_SEPARATOR+set}" != Xset; then
   UNAME=${UNAME-`uname 2>/dev/null`}
   case X$UNAME in

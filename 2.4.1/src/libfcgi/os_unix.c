@@ -55,6 +55,11 @@ static const char rcsid[] = "$Id: os_unix.c,v 1.38 2003/06/22 00:16:43 robs Exp 
 #include <unistd.h>
 #endif
 
+#ifdef HAVE_TENCENT_LIBCO
+#include "co_routine.h"
+int co_accept(int fd, struct sockaddr *addr, socklen_t *len );
+#endif
+
 #include "fastcgi.h"
 #include "fcgimisc.h"
 #include "fcgios.h"
@@ -1166,7 +1171,18 @@ int OS_Accept(int listen_sock, int fail_on_intr, const char *webServerAddrs)
                 if (shutdownPending) break;
                 /* There's a window here */
 
+#ifdef HAVE_TENCENT_LIBCO
+                socket = co_accept(listen_sock, (struct sockaddr *)&sa, &len);
+                if (socket < 0) {
+                    struct pollfd pf = { 0 };
+                    pf.fd = listen_sock;
+                    pf.events = (POLLIN | POLLERR | POLLHUP);
+                    co_poll(co_get_epoll_ct(), &pf, 1, 1000);
+                    errno = EINTR;
+                }
+#else
                 socket = accept(listen_sock, (struct sockaddr *)&sa, &len);
+#endif
             } while (socket < 0 
                      && errno == EINTR 
                      && ! fail_on_intr 

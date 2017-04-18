@@ -2051,6 +2051,16 @@ int FCGX_InitRequest(FCGX_Request *request, int sock, int flags)
 {
     memset(request, 0, sizeof(FCGX_Request));
 
+#ifdef HAVE_TENCENT_LIBCO
+    int sock_flags;
+
+    /* set nonblock */
+    sock_flags = fcntl(sock, F_GETFL, 0);
+    sock_flags |= O_NONBLOCK;
+    sock_flags |= O_NDELAY;
+    fcntl(sock, F_SETFL, sock_flags);
+#endif
+
     /* @@@ Should check that sock is open and listening */
     request->listen_sock = sock;
 
