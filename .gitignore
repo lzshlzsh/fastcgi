@@ -1,0 +1,17 @@
+*.o
+*.so
+*.swp
+*.lo
+*.a
+*.log
+
+cscope*
+
+Makefile
+.deps
+
+config.status
+fcgi_config.h
+libtool
+stamp-h
+stamp-h1

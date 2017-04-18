@@ -24,7 +24,7 @@ static int counts[THREAD_COUNT];
 
 static void *doit(void *a)
 {
-    int rc, i, thread_id = (int)a;
+    int rc, i, thread_id = (long int)a;
     pid_t pid = getpid();
     FCGX_Request request;
     char *server_name;

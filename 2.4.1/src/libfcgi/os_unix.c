@@ -243,7 +243,7 @@ static int OS_BuildSockAddrUn(const char *bindPath,
         return -1;
     }
 #else                           /* 4.3 BSD Tahoe: Solaris, HPUX, DEC, ... */
-    if(bindPathLen > sizeof(servAddrPtr->sun_path)) {
+    if((size_t)bindPathLen > sizeof(servAddrPtr->sun_path)) {
         return -1;
     }
 #endif

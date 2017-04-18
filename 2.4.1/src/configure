@@ -9,6 +9,8 @@
 
 # Find the correct PATH separator.  Usually this is `:', but
 # DJGPP uses `;' like DOS.
+HAVE_SYS_SOCKET_H=1
+
 if test "X${PATH_SEPARATOR+set}" != Xset; then
   UNAME=${UNAME-`uname 2>/dev/null`}
   case X$UNAME in

@@ -32,7 +32,9 @@ static const char rcsid[] = "$Id: cgi-fcgi.c,v 1.16 2003/06/22 02:02:33 robs Exp
 #include <stdlib.h>
 #include <io.h>
 #else
+#ifndef __cplusplus
 extern char **environ;
+#endif
 #endif
 
 #ifdef HAVE_SYS_PARAM_H
